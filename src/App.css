@@ -1,42 +1,93 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* General */
+  --main-background: hsl(222, 26%, 31%);
+  /* --main-background: red; */
+  --toggle-background: hsl(223, 31%, 20%);
+  --screen-background: hsl(224, 36%, 15%);
+
+  /* Keys */
+  --key-background: hsl(225, 21%, 49%);
+  --key-shadow-keyboard: hsl(224, 28%, 35%);
+
+  --toggle: hsl(6, 63%, 50%);
+  --key-shadow-equal: hsl(6, 70%, 34%);
+
+  --key-background-numbers: hsl(30, 25%, 89%);
+  --key-background-numbers-shadow: hsl(28, 16%, 65%);
+
+  /* Text */
+  --text-key: hsl(221, 14%, 31%);
+  --display: hsl(0, 0, 100%);
+}
+
+[data-theme='theme-2'] {
+  /* General */
+  /* --main-background: green; */
+  --main-background: hsl(0, 0%, 90%);
+  --toggle-background: hsl(0, 5%, 81%);
+  --screen-background: hsl(0, 0%, 93%);
+
+  /* Keys */
+  --key-background: hsl(185, 42%, 37%);
+  --key-shadow-keyboard: hsl(185, 58%, 25%);
+
+  --toggle: hsl(25, 98%, 40%);
+  --key-shadow-equal: hsl(25, 99%, 27%);
+
+  --key-background-numbers: hsl(45, 7%, 89%);
+  --key-background-numbers-shadow: hsl(35, 11%, 61%);
+
+  /* Text */
+  --text-key: hsl(60, 10%, 19%);
+  --display: hsl(0, 0, 100%);
+}
+
+[data-theme='theme-3'] {
+  /* General */
+  --main-background: hsl(268, 75%, 9%);
+  --toggle-background: hsl(268, 71%, 12%);
+  --screen-background: hsl(268, 71%, 12%);
+
+  /* Keys */
+  --key-background: hsl(281, 89%, 26%);
+  --key-shadow-keyboard: hsl(285, 91%, 52%);
+
+  --toggle: hsl(176, 100%, 44%);
+  --key-shadow-equal: hsl(177, 92%, 70%);
+
+  --key-background-numbers: hsl(268, 47%, 21%);
+  --key-background-numbers-shadow: hsl(290, 70%, 36%);
+
+  /* Text */
+  --text-key: hsl(52, 100%, 62%);
+  --text-equal: hsl(198, 20%, 13%);
+  --text-display: hsl(0, 0, 100%);
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  color: var(--text-primary);
+  background-color: var(--main-background);
+  /* background-color: red; */
+  font-size: large;
+  font-weight: bold;
+  padding: 20px;
+  height: calc(100vh - 40px);
+  transition: all 0.5s;
 }
 
 button {
-  font-size: calc(10px + 2vmin);
+  color: var(--text-primary);
+  background-color: var(--background);
+  border: 2px var(--text-primary) solid;
+  float: right;
+  transition: all 0.5s;
 }

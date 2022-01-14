@@ -1,37 +1,26 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import useLocalStorage from 'use-local-storage';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const handleThemes = (currentTheme) => {
+    if (currentTheme === 'theme-1') return 'theme-2';
+    if (currentTheme === 'theme-2') return 'theme-3';
+    if (currentTheme === 'theme-3') return 'theme-1';
+  };
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'theme-1' : 'theme-2');
+
+  const switchTheme = () => {
+    const newTheme = handleThemes(theme);
+    setTheme(newTheme);
+  };
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type='button' onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className='App-link'
-            href='https://vitejs.dev/guide/features.html'
-            target='_blank'
-            rel='noopener noreferrer'>
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className='App' data-theme={theme}>
+      <span>Easy darkmode and themes in react</span>
+      <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button>
     </div>
   );
 }
