@@ -1,0 +1,17 @@
+.calculator--display {
+  width: 100%;
+}
+
+.calculator--display input {
+  width: 100%;
+  padding: 18px 15px;
+  text-align: right;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--display);
+  background-color: var(--screen-background);
+  font-family: 'Spartan', sans-serif;
+  font-weight: 700;
+}

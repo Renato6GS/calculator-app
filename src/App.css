@@ -11,13 +11,14 @@ html {
 :root {
   /* General */
   --main-background: hsl(222, 26%, 31%);
-  /* --main-background: red; */
   --toggle-background: hsl(223, 31%, 20%);
   --screen-background: hsl(224, 36%, 15%);
 
   /* Keys */
-  --key-background: hsl(225, 21%, 49%);
+  --key-background-reset-del: hsl(225, 21%, 49%);
   --key-shadow-keyboard: hsl(224, 28%, 35%);
+
+  --background-main-container-btn: #262c44;
 
   --toggle: hsl(6, 63%, 50%);
   --key-shadow-equal: hsl(6, 70%, 34%);
@@ -27,12 +28,11 @@ html {
 
   /* Text */
   --text-key: hsl(221, 14%, 31%);
-  --display: hsl(0, 0, 100%);
+  --display: #fff;
 }
 
 [data-theme='theme-2'] {
   /* General */
-  /* --main-background: green; */
   --main-background: hsl(0, 0%, 90%);
   --toggle-background: hsl(0, 5%, 81%);
   --screen-background: hsl(0, 0%, 93%);
@@ -49,7 +49,7 @@ html {
 
   /* Text */
   --text-key: hsl(60, 10%, 19%);
-  --display: hsl(0, 0, 100%);
+  --display: #fff;
 }
 
 [data-theme='theme-3'] {
@@ -73,21 +73,16 @@ html {
   --text-equal: hsl(198, 20%, 13%);
   --text-display: hsl(0, 0, 100%);
 }
-.App {
-  color: var(--text-primary);
+
+body {
+  margin: 0;
+  padding: 0;
   background-color: var(--main-background);
-  /* background-color: red; */
-  font-size: large;
-  font-weight: bold;
-  padding: 20px;
-  height: calc(100vh - 40px);
-  transition: all 0.5s;
 }
 
-button {
-  color: var(--text-primary);
-  background-color: var(--background);
-  border: 2px var(--text-primary) solid;
-  float: right;
-  transition: all 0.5s;
+.App {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
 }

@@ -1,0 +1,9 @@
+.calculator--container-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 15px;
+  padding: 18px;
+  background-color: var(--background-main-container-btn);
+  border-radius: 8px;
+}

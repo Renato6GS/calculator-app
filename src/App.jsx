@@ -1,6 +1,7 @@
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
 import './App.css';
+import Calculator from './components/Calculator';
 
 function App() {
   const handleThemes = (currentTheme) => {
@@ -19,8 +20,8 @@ function App() {
 
   return (
     <div className='App' data-theme={theme}>
-      <span>Easy darkmode and themes in react</span>
-      <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button>
+      <Calculator />
+      {/* <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button> */}
     </div>
   );
 }
