@@ -1,0 +1,32 @@
+.btn {
+  padding: 14px 14px 7px;
+  color: var(--text-key);
+  background-color: var(--key-background-numbers);
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  border-bottom: 3px solid var(--key-background-numbers-shadow);
+  font-family: 'Spartan', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-reset,
+.btn-equal {
+  grid-column: span 2;
+}
+
+.btn-reset,
+.btn-del {
+  background-color: var(--key-background-reset-del);
+  border-bottom: 3px solid var(--key-shadow-keyboard);
+  color: var(--display);
+  font-size: 0.9rem;
+}
+
+.btn-equal {
+  color: var(--display);
+  background-color: var(--toggle);
+  border-bottom: 3px solid var(--key-shadow-equal);
+}
