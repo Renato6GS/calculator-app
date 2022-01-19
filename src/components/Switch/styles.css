@@ -1,0 +1,78 @@
+.switch {
+  display: flex;
+  gap: 10px;
+}
+
+.container--label {
+  padding-top: 25px;
+}
+
+.switch--label {
+  color: var(--display);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.switch-container span {
+  cursor: pointer;
+}
+
+.toggle {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.switch--label-activate {
+  color: var(--display);
+}
+
+.switch--label-desactivate {
+  color: var(--display);
+}
+
+.container-circle {
+  background-color: var(--background-main-container-btn);
+  width: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  border-radius: 15px;
+}
+
+.circle {
+  background-color: var(--toggle);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.theme {
+  color: blue;
+}
+
+.position-1 {
+  transform: translateX(0px);
+  transition: transform 0.7s;
+}
+
+.position-2 {
+  transform: translateX(23px);
+  transition: transform 0.7s;
+}
+
+.position-3 {
+  transform: translateX(46px);
+  transition: transform 0.7s;
+}

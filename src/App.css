@@ -29,6 +29,8 @@ html {
   /* Text */
   --text-key: hsl(221, 14%, 31%);
   --display: #fff;
+  --text-color-del: #fff;
+  --text-color-equal: #fff;
 }
 
 [data-theme='theme-2'] {
@@ -38,8 +40,11 @@ html {
   --screen-background: hsl(0, 0%, 93%);
 
   /* Keys */
+  --key-background-reset-del: #388186;
   --key-background: hsl(185, 42%, 37%);
   --key-shadow-keyboard: hsl(185, 58%, 25%);
+
+  --background-main-container-btn: #d2cdcd;
 
   --toggle: hsl(25, 98%, 40%);
   --key-shadow-equal: hsl(25, 99%, 27%);
@@ -49,7 +54,9 @@ html {
 
   /* Text */
   --text-key: hsl(60, 10%, 19%);
-  --display: #fff;
+  --display: #39392e;
+  --text-color-del: hsl(0, 0%, 90%);
+  --text-color-equal: hsl(0, 0%, 90%);
 }
 
 [data-theme='theme-3'] {
@@ -59,25 +66,30 @@ html {
   --screen-background: hsl(268, 71%, 12%);
 
   /* Keys */
+  --key-background-reset-del: #56077c;
   --key-background: hsl(281, 89%, 26%);
   --key-shadow-keyboard: hsl(285, 91%, 52%);
 
   --toggle: hsl(176, 100%, 44%);
   --key-shadow-equal: hsl(177, 92%, 70%);
 
+  --background-main-container-btn: #1e0837;
+
   --key-background-numbers: hsl(268, 47%, 21%);
   --key-background-numbers-shadow: hsl(290, 70%, 36%);
 
   /* Text */
   --text-key: hsl(52, 100%, 62%);
+  --display: hsl(52, 100%, 62%);
   --text-equal: hsl(198, 20%, 13%);
   --text-display: hsl(0, 0, 100%);
+  --text-color-del: #fff;
+  --text-color-equal: hsl(221, 14%, 31%);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--main-background);
 }
 
 .App {
@@ -85,4 +97,5 @@ body {
   justify-content: center;
   align-content: center;
   height: 100vh;
+  background-color: var(--main-background);
 }

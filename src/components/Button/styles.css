@@ -21,12 +21,12 @@
 .btn-del {
   background-color: var(--key-background-reset-del);
   border-bottom: 3px solid var(--key-shadow-keyboard);
-  color: var(--display);
+  color: var(--text-color-del);
   font-size: 0.9rem;
 }
 
 .btn-equal {
-  color: var(--display);
+  color: var(--text-color-equal);
   background-color: var(--toggle);
   border-bottom: 3px solid var(--key-shadow-equal);
 }

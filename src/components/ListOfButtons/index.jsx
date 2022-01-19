@@ -2,12 +2,12 @@ import React from 'react';
 import Button from '../Button';
 import './styles.css';
 
-const NUMBERS = [7, 8, 9, 'DEL', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0, '/', 'x'];
+const DIGITS = [7, 8, 9, 'DEL', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0, '/', 'x'];
 
 export default function ListOfButtons() {
   return (
     <div className='calculator--container-buttons'>
-      {NUMBERS.map((e) => {
+      {DIGITS.map((e) => {
         const className = e === 'DEL' ? 'btn btn-del' : 'btn';
         return <Button key={e} className={className} digit={e} />;
       })}
