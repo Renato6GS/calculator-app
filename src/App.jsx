@@ -1,28 +1,20 @@
-import React from 'react';
-import useLocalStorage from 'use-local-storage';
+import React, { useState } from 'react';
 import './App.css';
 import Calculator from './components/Calculator';
+import ThemeContext from './context/ThemeContext';
 
 function App() {
-  const handleThemes = (currentTheme) => {
-    if (currentTheme === 'theme-1') return 'theme-2';
-    if (currentTheme === 'theme-2') return 'theme-3';
-    if (currentTheme === 'theme-3') return 'theme-1';
-  };
-
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'theme-1' : 'theme-2');
 
-  const switchTheme = () => {
-    const newTheme = handleThemes(theme);
-    setTheme(newTheme);
-  };
+  const [theme, setTheme] = useState(defaultDark ? 'theme-1' : 'theme-3');
+  const value = { theme, setTheme };
 
   return (
-    <div className='App' data-theme={theme}>
-      <Calculator />
-      {/* <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button> */}
-    </div>
+    <ThemeContext.Provider value={value}>
+      <div className='App' data-theme={theme}>
+        <Calculator />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
