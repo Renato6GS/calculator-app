@@ -45,7 +45,6 @@ export default function Switch() {
             )}
           </RadioGroup.Option>
         </RadioGroup>
-        {console.log(plan)}
         <span className={'container-circle'} id='container'>
           <span
             className={`circle ${plan === 'theme-1' ? 'position-1' : plan === 'theme-2' ? 'position-2' : 'position-3'}`}
