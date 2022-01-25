@@ -30,3 +30,7 @@
   background-color: var(--toggle);
   border-bottom: 3px solid var(--key-shadow-equal);
 }
+
+.btn:active {
+  opacity: 0.8;
+}

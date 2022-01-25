@@ -15,3 +15,7 @@
   font-family: 'Spartan', sans-serif;
   font-weight: 700;
 }
+
+.calculator--display input:invalid {
+  content: 'algo mal';
+}
