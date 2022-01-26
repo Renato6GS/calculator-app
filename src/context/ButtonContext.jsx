@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Context = React.createContext({});
 
 export function ButtonContextProvider({ children }) {
   const [keyword, setKeyword] = useState(0);
+
+  const inputDisplay = useRef(null);
 
   const removeCommas = (number) => number.filter((n) => n !== ',');
   const removePoints = (number) => number.filter((n) => n !== '.');
@@ -95,6 +97,7 @@ export function ButtonContextProvider({ children }) {
 
       // TODO: No podemos borrar el último dígito. Hagamos el button Del y quizás sepamos como hacerlo
     }
+    inputDisplay.current.focus();
   };
 
   return (
@@ -102,6 +105,7 @@ export function ButtonContextProvider({ children }) {
       value={{
         keyword,
         handleChange,
+        inputDisplay,
       }}>
       {children}
     </Context.Provider>
