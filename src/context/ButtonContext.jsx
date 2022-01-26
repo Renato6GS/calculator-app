@@ -4,6 +4,7 @@ const Context = React.createContext({});
 
 export function ButtonContextProvider({ children }) {
   const [keyword, setKeyword] = useState(0);
+
   const removeCommas = (number) => number.filter((n) => n !== ',');
   const removePoints = (number) => number.filter((n) => n !== '.');
 
@@ -47,6 +48,7 @@ export function ButtonContextProvider({ children }) {
     const rex = /^[0-9\b]+$/;
     const dot = /\./;
     number = removeCommas(number.split('')).join('');
+    number = removePoints(number.split('')).join('');
     return rex.test(number) || dot.test(number) || number.length === 0;
   };
 
