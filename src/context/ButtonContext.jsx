@@ -7,6 +7,7 @@ export function ButtonContextProvider({ children }) {
 
   const removeCommas = (number) => number.filter((n) => n !== ',');
   const removePoints = (number) => number.filter((n) => n !== '.');
+  const minimumLength = (number) => number.length >= 1;
 
   const validateLength = (number) => {
     number = removeCommas(number.split('')).join('');
@@ -45,11 +46,31 @@ export function ButtonContextProvider({ children }) {
   };
 
   const isANumber = (number) => {
-    const rex = /^[0-9\b]+$/;
+    const re = /^[0-9\b]+$/;
     const dot = /\./;
     number = removeCommas(number.split('')).join('');
     number = removePoints(number.split('')).join('');
-    return rex.test(number) || dot.test(number) || number.length === 0;
+    return re.test(number) || dot.test(number) || number.length === 0;
+  };
+
+  const isAgainAZeroBeforeThePointDecimal = (number) => {
+    const arr = removeCommas(number.split(''));
+    const zero = number[0];
+    const secondValue = number[1];
+    const point = arr.indexOf('.');
+    if (zero === '0' && point === -1 && secondValue === '0') return false;
+    return true;
+
+    // Si es -1 es antes del punto decimal
+  };
+
+  const removeFirstZero = (number) => {
+    const arr = removeCommas(number.split(''));
+    const zero = arr[0];
+    const secondNumber = arr[1];
+
+    if (zero === '0' && secondNumber !== '.') return secondNumber;
+    return number;
   };
 
   const handleChange = (evt) => {
@@ -62,10 +83,17 @@ export function ButtonContextProvider({ children }) {
 
     number = addCommas(number);
 
-    if (!validateLength(number) && checkDecimalPoint(number) && isANumber(number)) {
+    if (
+      !validateLength(number) &&
+      checkDecimalPoint(number) &&
+      isANumber(number) &&
+      isAgainAZeroBeforeThePointDecimal(number) &&
+      minimumLength(number)
+    ) {
+      number = removeFirstZero(number);
       setKeyword(number);
-    } else {
-      evt.target.value = evt.target.value.slice(0, evt.target.maxLength);
+
+      // TODO: No podemos borrar el último dígito. Hagamos el button Del y quizás sepamos como hacerlo
     }
   };
 
