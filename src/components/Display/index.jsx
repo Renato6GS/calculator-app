@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import './styles.css';
-// import ButtonContext from 'context/ButtonContext';
 import Context from 'context/ButtonContext';
 
 export default function Display() {
@@ -27,7 +26,7 @@ export default function Display() {
         max='9999999999'
         min='-9999999999'
         onChange={handleChange}
-        value={keyword}
+        value={keyword ?? 0}
         ref={inputDisplay}
       />
     </div>

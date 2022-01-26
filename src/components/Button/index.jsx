@@ -7,7 +7,9 @@ export default function Button({ digit, className }) {
   const { keyword, handleChange } = useContext(Context);
 
   const handleClick = (e) => {
-    handleChange(keyword + e.target.value);
+    const newDigit = e.target.value;
+    const beforeValue = keyword ?? 0;
+    handleChange(beforeValue + newDigit);
   };
 
   return (
