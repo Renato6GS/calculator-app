@@ -75,12 +75,35 @@ export function ButtonContextProvider({ children }) {
     return number;
   };
 
-  const handleChange = (evt) => {
+  const delAction = ({ number }) => {
+    let newValue = number.slice(0, number.length - 1);
+    newValue = addCommas(newValue);
+    setKeyword(newValue);
+  };
+
+  const calculatorActions = ({ type, number }) => {
+    // number = removeCommas(number.split('')).join('');
+    // number = removePoints(number.split('')).join('');
+    if (type === 'DEL') delAction({ number });
+
+    inputDisplay.current.focus();
+  };
+
+  const handleChange = (evt, newDigit) => {
     let number = 0;
+    let action = '';
     try {
       number = evt.target.value; // Fron imput
     } catch (error) {
-      number = evt; // From button
+      action = !isANumber(newDigit) && newDigit;
+      number = evt;
+
+      if (action) {
+        calculatorActions({ type: newDigit, number });
+        return;
+      }
+
+      number += newDigit; // From button
     }
 
     number = addCommas(number);
