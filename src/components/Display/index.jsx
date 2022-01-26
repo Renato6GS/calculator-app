@@ -1,14 +1,13 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './styles.css';
 import Context from 'context/ButtonContext';
 
 export default function Display() {
-  const { keyword, handleChange } = useContext(Context);
-  const inputDisplay = useRef(null);
+  const { keyword, handleChange, inputDisplay } = useContext(Context);
 
   useEffect(() => {
     inputDisplay.current.focus();
-  }, [inputDisplay]);
+  }, []);
 
   // TODO: que los botones funcionen más un efecto de hover y presionado.
   // TODO: al presionar los números desde el teclado, los botones se hagan un efecto de ser presionados
