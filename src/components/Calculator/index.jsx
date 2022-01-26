@@ -3,18 +3,18 @@ import Display from '../Display';
 import Header from '../Header';
 import ListOfButtons from '../ListOfButtons';
 import './styles.css';
-import { ButtonContextProvider } from 'context/ButtonContext';
+import { HandlerInputContextProvider } from 'context/HandlerInputContext';
 
 export default function Calculator() {
   return (
     <div className='calculator--container'>
       <Header />
 
-      <ButtonContextProvider>
+      <HandlerInputContextProvider>
         <Display />
 
         <ListOfButtons />
-      </ButtonContextProvider>
+      </HandlerInputContextProvider>
     </div>
   );
 }
