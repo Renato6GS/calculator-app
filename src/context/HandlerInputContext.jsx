@@ -9,23 +9,33 @@ import {
   isANumber,
   isAgainAZeroBeforeThePointDecimal,
 } from '../utils/validateActions';
-import { delAction } from '../utils/calculatorActions';
+import { delAction, resetAction, operationAction, equalAction } from '../utils/calculatorActions';
 
 const Context = React.createContext({});
 
 export function HandlerInputContextProvider({ children }) {
   const [keyword, setKeyword] = useState(0);
+  const [clearInput, setClearInput] = useState(false);
   const inputDisplay = useRef(null);
 
-  const calculatorActions = ({ type, number }) => {
-    // number = removeCommas(number.split('')).join('');
-    // number = removePoints(number.split('')).join('');
+  const calculatorActions = ({ type, number, setClearInput }) => {
     if (type === 'DEL') delAction({ number, setKeyword });
-
+    else if (type === 'RESET') resetAction({ setKeyword });
+    else if (type === '+') operationAction({ number, operation: type, setClearInput, setKeyword });
+    else if (type === '-') operationAction({ number, operation: type, setClearInput, setKeyword });
+    else if (type === '/') operationAction({ number, operation: type, setClearInput, setKeyword });
+    else if (type === 'x') operationAction({ number, operation: type, setClearInput, setKeyword });
+    else if (type === '=') equalAction({ number, setKeyword, setClearInput });
     inputDisplay.current.focus();
   };
 
   const handleChange = (evt, newDigit) => {
+    if (clearInput && isANumber(newDigit)) {
+      setKeyword(newDigit);
+      setClearInput(false);
+      return;
+    }
+
     let number = 0;
     let action = '';
     try {
@@ -35,7 +45,7 @@ export function HandlerInputContextProvider({ children }) {
       number = evt;
 
       if (action) {
-        calculatorActions({ type: newDigit, number });
+        calculatorActions({ type: newDigit, number, setClearInput });
         return;
       }
 
@@ -53,8 +63,6 @@ export function HandlerInputContextProvider({ children }) {
     ) {
       number = removeFirstZero(number);
       setKeyword(number);
-
-      // TODO: No podemos borrar el último dígito. Hagamos el button Del y quizás sepamos como hacerlo
     }
     inputDisplay.current.focus();
   };
@@ -65,6 +73,7 @@ export function HandlerInputContextProvider({ children }) {
         keyword,
         handleChange,
         inputDisplay,
+        clearInput,
       }}>
       {children}
     </Context.Provider>
