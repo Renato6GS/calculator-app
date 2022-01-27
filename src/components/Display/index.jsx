@@ -13,6 +13,7 @@ export default function Display() {
 
   useEffect(() => {
     inputDisplay.current.focus();
+    localStorage.clear();
   }, []);
 
   useEffect(() => {

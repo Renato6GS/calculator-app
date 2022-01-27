@@ -29,6 +29,4 @@ export const isAgainAZeroBeforeThePointDecimal = (number) => {
   const point = arr.indexOf('.');
   if (zero === '0' && point === -1 && secondValue === '0') return false;
   return true;
-
-  // Si es -1 es antes del punto decimal
 };
