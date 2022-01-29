@@ -10,6 +10,7 @@ export const delAction = ({ number, setKeyword }) => {
 export const resetAction = ({ setKeyword }) => {
   const initState = 0;
   setKeyword(initState);
+  clearStorage();
 };
 
 const executeOperation = ({ number, operation, beforeResult }) => {
@@ -18,7 +19,7 @@ const executeOperation = ({ number, operation, beforeResult }) => {
 
   if (operation === '+') return Number(beforeResult + number);
   if (operation === '/') return Number(beforeResult / number);
-  if (operation === 'x') return Number(beforeResult * number);
+  if (operation === 'x' || operation === '*') return Number(beforeResult * number);
   if (operation === '-') return Number(beforeResult - number);
 };
 

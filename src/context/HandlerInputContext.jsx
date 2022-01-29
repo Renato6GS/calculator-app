@@ -24,7 +24,7 @@ export function HandlerInputContextProvider({ children }) {
     else if (type === '+') operationAction({ number, operation: type, setClearInput, setKeyword });
     else if (type === '-') operationAction({ number, operation: type, setClearInput, setKeyword });
     else if (type === '/') operationAction({ number, operation: type, setClearInput, setKeyword });
-    else if (type === 'x') operationAction({ number, operation: type, setClearInput, setKeyword });
+    else if (type === 'x' || type === '*') operationAction({ number, operation: type, setClearInput, setKeyword });
     else if (type === '=') equalAction({ number, setKeyword, setClearInput });
     inputDisplay.current.focus();
   };
@@ -32,7 +32,7 @@ export function HandlerInputContextProvider({ children }) {
   const handleChange = (evt, newDigit) => {
     if (clearInput && isANumber(newDigit)) {
       setKeyword(newDigit);
-      setClearInput(false);
+      // setClearInput(false);
       return;
     }
 
@@ -40,6 +40,7 @@ export function HandlerInputContextProvider({ children }) {
     let action = '';
     try {
       number = evt.target.value; // Fron imput
+      // number = evt.key; // Fron imput
     } catch (error) {
       action = !isANumber(newDigit) && newDigit;
       number = evt;
@@ -50,6 +51,11 @@ export function HandlerInputContextProvider({ children }) {
       }
 
       number += newDigit; // From button
+    }
+
+    if (newDigit === 'Enter') {
+      calculatorActions({ type: '=', number, setClearInput });
+      return;
     }
 
     number = addCommas(number);
@@ -74,6 +80,7 @@ export function HandlerInputContextProvider({ children }) {
         handleChange,
         inputDisplay,
         clearInput,
+        setClearInput,
       }}>
       {children}
     </Context.Provider>
