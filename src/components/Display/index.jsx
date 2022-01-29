@@ -1,9 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
 import './styles.css';
 import Context from 'context/HandlerInputContext';
+import { isANumber } from 'utils/validateActions';
 
 export default function Display() {
-  const { keyword, handleChange, inputDisplay } = useContext(Context);
+  const { keyword, handleChange, inputDisplay, clearInput, setClearInput } = useContext(Context);
   const [disableInput, setDisableInput] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -25,6 +26,31 @@ export default function Display() {
     };
   }, [window.innerWidth]);
 
+  const [isReady, setIsReady] = useState(false);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleChange(event, 'Enter');
+      return;
+    } else if (isANumber(event.key) && clearInput) {
+      handleChange(0, event.key);
+      setIsReady(true);
+      return;
+    } else if (event.key === '+' || event.key === '*' || event.key === '/' || event.key === '-') {
+      handleChange(event.target.value, event.key);
+    }
+  };
+
+  const handleChangeDisplay = (e) => {
+    if (!clearInput) {
+      handleChange(e);
+      setIsReady(false);
+    }
+    if (isReady) {
+      setClearInput(false);
+    }
+  };
+
   return (
     <div className='calculator--display'>
       <input
@@ -35,11 +61,12 @@ export default function Display() {
         step='0.0001'
         max='9999999999'
         min='-9999999999'
-        onChange={handleChange}
+        onChange={handleChangeDisplay}
         value={keyword ?? 0}
         ref={inputDisplay}
         autoComplete='off'
         disabled={disableInput}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );
