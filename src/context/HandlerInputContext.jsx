@@ -22,22 +22,15 @@ export function HandlerInputContextProvider({ children }) {
   const calculatorActions = ({ type, number, setClearInput }) => {
     if (type === 'DEL') delAction({ number, setKeyword });
     else if (type === 'RESET') resetAction({ setKeyword });
-    else if (type === '+')
-      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
-    else if (type === '-')
-      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
-    else if (type === '/')
-      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
-    else if (type === 'x' || type === '*')
+    else if (type === '+' || type === '-' || type === '/' || type === '*' || type === 'x')
       operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
     else if (type === '=') equalAction({ number, setKeyword, setClearInput, setCleanStorage });
     inputDisplay.current.focus();
   };
 
-  const handleChange = (evt, newDigit) => {
+  const handleChange = (evt, newDigit, fromButton) => {
     if (clearInput && isANumber(newDigit)) {
       setKeyword(newDigit);
-      // setClearInput(false);
       return;
     }
 
@@ -45,7 +38,6 @@ export function HandlerInputContextProvider({ children }) {
     let action = '';
     try {
       number = evt.target.value; // Fron imput
-      // number = evt.key; // Fron imput
     } catch (error) {
       action = !isANumber(newDigit) && newDigit;
       number = evt;
@@ -55,7 +47,7 @@ export function HandlerInputContextProvider({ children }) {
         return;
       }
 
-      number += newDigit; // From button
+      number = fromButton ? (number += newDigit) : newDigit;
     }
 
     if (newDigit === 'Enter') {
@@ -65,15 +57,21 @@ export function HandlerInputContextProvider({ children }) {
 
     number = addCommas(number);
 
-    if (
-      !validateLength(number) &&
-      validateDecimalPoint(number) &&
-      isANumber(number) &&
-      isAgainAZeroBeforeThePointDecimal(number) &&
-      validateMinimumLength(number)
-    ) {
-      number = removeFirstZero(number);
-      setKeyword(number);
+    try {
+      if (
+        !validateLength(number) &&
+        validateDecimalPoint(number) &&
+        isANumber(number) &&
+        isAgainAZeroBeforeThePointDecimal(number) &&
+        validateMinimumLength(number)
+      ) {
+        number = removeFirstZero(number);
+        setKeyword(number);
+      } else {
+        console.err('Error: Invalid number');
+      }
+    } catch (error) {
+      console.err(error);
     }
     inputDisplay.current.focus();
   };
@@ -82,6 +80,7 @@ export function HandlerInputContextProvider({ children }) {
     <Context.Provider
       value={{
         keyword,
+        setKeyword,
         handleChange,
         inputDisplay,
         clearInput,

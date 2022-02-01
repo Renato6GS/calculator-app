@@ -10,7 +10,8 @@ export default function Button({ digit, className }) {
     const newDigit = e.target.value;
     const beforeValue = keyword ?? 0;
     setClearInput(false);
-    handleChange(beforeValue, newDigit);
+    const fromButton = true;
+    handleChange(beforeValue, newDigit, fromButton);
   };
 
   return (
