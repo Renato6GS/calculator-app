@@ -2,9 +2,10 @@ import React, { useEffect, useContext, useState } from 'react';
 import './styles.css';
 import Context from 'context/HandlerInputContext';
 import { isANumber } from 'utils/validateActions';
+import { delAction } from '../../utils/calculatorActions';
 
 export default function Display() {
-  const { keyword, handleChange, inputDisplay, clearInput, setClearInput } = useContext(Context);
+  const { keyword, handleChange, inputDisplay, clearInput, setClearInput, setKeyword } = useContext(Context);
   const [disableInput, setDisableInput] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -26,33 +27,27 @@ export default function Display() {
     };
   }, [window.innerWidth]);
 
-  const [isReady, setIsReady] = useState(false);
-
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    const { key } = event;
+    const { value } = event.target;
+    const FILL = 0;
+
+    if (key === 'Enter') {
       handleChange(event, 'Enter');
-      return;
-    } else if (isANumber(event.key) && clearInput) {
-      handleChange(0, event.key);
-      setIsReady(true);
-      return;
-    } else if (event.key === '+' || event.key === '*' || event.key === '/' || event.key === '-') {
-      handleChange(event.target.value, event.key);
-      setIsReady(true);
+    } else if (isANumber(key) && clearInput) {
+      handleChange(FILL, key);
+      setClearInput(false);
+    } else if (isANumber(key)) {
+      handleChange(FILL, keyword + key);
+    } else if (key === '+' || key === '*' || key === '/' || key === '-') {
+      setClearInput(true);
+      handleChange(value, key);
+    } else if (key === 'Backspace') {
+      delAction({ number: keyword, setKeyword });
     }
   };
 
-  const handleChangeDisplay = (e) => {
-    if (!clearInput) {
-      handleChange(e);
-      setIsReady(false);
-    }
-    if (isReady) {
-      // setClearInput(false);
-      setClearInput(true);
-      console.log('a ver');
-    }
-  };
+  const handleChangeDisplay = (e) => {};
 
   return (
     <div className='calculator--display'>
