@@ -38,6 +38,7 @@ export default function Display() {
       return;
     } else if (event.key === '+' || event.key === '*' || event.key === '/' || event.key === '-') {
       handleChange(event.target.value, event.key);
+      setIsReady(true);
     }
   };
 
@@ -47,7 +48,9 @@ export default function Display() {
       setIsReady(false);
     }
     if (isReady) {
-      setClearInput(false);
+      // setClearInput(false);
+      setClearInput(true);
+      console.log('a ver');
     }
   };
 

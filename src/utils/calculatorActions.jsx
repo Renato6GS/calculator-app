@@ -23,7 +23,20 @@ const executeOperation = ({ number, operation, beforeResult }) => {
   if (operation === '-') return Number(beforeResult - number);
 };
 
-export const operationAction = ({ number, operation, setClearInput, setKeyword, equal }) => {
+export const operationAction = ({
+  number,
+  operation,
+  setClearInput,
+  setKeyword,
+  equal,
+  cleanStorage,
+  setCleanStorage,
+}) => {
+  if (cleanStorage) {
+    setCleanStorage(false);
+    clearStorage();
+  }
+
   const beforeResult = localStorage.getItem('result');
   let result = executeOperation({ number, operation, beforeResult });
 
@@ -40,13 +53,23 @@ export const operationAction = ({ number, operation, setClearInput, setKeyword, 
   return result;
 };
 
-export const equalAction = ({ number, setKeyword, setClearInput }) => {
+export const equalAction = ({ number, setKeyword, setClearInput, setCleanStorage }) => {
   const operation = localStorage.getItem('lastAction');
+
+  if (localStorage.getItem('lastNumber') === null) {
+    localStorage.setItem('lastNumber', number);
+  } else {
+    number = localStorage.getItem('lastNumber');
+  }
+
   const result = operationAction({ number, operation, setClearInput, equal: true });
   setKeyword(addCommas(String(result)));
-  clearStorage();
+  setCleanStorage(true);
 };
 
 export const clearStorage = () => {
   localStorage.clear();
 };
+
+// TODO: Delete last digit and change it for 0
+// TODO: Concatenacion operation
