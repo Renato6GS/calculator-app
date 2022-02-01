@@ -16,16 +16,21 @@ const Context = React.createContext({});
 export function HandlerInputContextProvider({ children }) {
   const [keyword, setKeyword] = useState(0);
   const [clearInput, setClearInput] = useState(false);
+  const [cleanStorage, setCleanStorage] = useState(false);
   const inputDisplay = useRef(null);
 
   const calculatorActions = ({ type, number, setClearInput }) => {
     if (type === 'DEL') delAction({ number, setKeyword });
     else if (type === 'RESET') resetAction({ setKeyword });
-    else if (type === '+') operationAction({ number, operation: type, setClearInput, setKeyword });
-    else if (type === '-') operationAction({ number, operation: type, setClearInput, setKeyword });
-    else if (type === '/') operationAction({ number, operation: type, setClearInput, setKeyword });
-    else if (type === 'x' || type === '*') operationAction({ number, operation: type, setClearInput, setKeyword });
-    else if (type === '=') equalAction({ number, setKeyword, setClearInput });
+    else if (type === '+')
+      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
+    else if (type === '-')
+      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
+    else if (type === '/')
+      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
+    else if (type === 'x' || type === '*')
+      operationAction({ number, operation: type, setClearInput, setKeyword, cleanStorage, setCleanStorage });
+    else if (type === '=') equalAction({ number, setKeyword, setClearInput, setCleanStorage });
     inputDisplay.current.focus();
   };
 
