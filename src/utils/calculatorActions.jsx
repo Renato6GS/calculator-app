@@ -37,8 +37,15 @@ export const operationAction = ({
     clearStorage();
   }
 
+  const beforeOperation = localStorage.getItem('lastAction') === null ? operation : localStorage.getItem('lastAction');
+
+  // console.log({ beforeOperation });
+
+  console.log(localStorage.getItem('lastAction'));
+
   const beforeResult = localStorage.getItem('result');
-  let result = executeOperation({ number, operation, beforeResult });
+  // let result = executeOperation({ number, operation, beforeResult });
+  let result = executeOperation({ number, operation: beforeOperation, beforeResult });
 
   if (beforeResult === null) {
     result = Number(removeCommas(number.split('')).join(''));
