@@ -47,7 +47,7 @@ export default function Display() {
     }
   };
 
-  const handleChangeDisplay = (e) => {};
+  const handleChangeDisplay = () => {};
 
   return (
     <div className='calculator--display'>
