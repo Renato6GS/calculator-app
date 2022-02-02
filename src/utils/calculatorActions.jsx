@@ -16,11 +16,15 @@ export const resetAction = ({ setKeyword }) => {
 const executeOperation = ({ number, operation, beforeResult }) => {
   beforeResult = Number(beforeResult);
   number = Number(removeCommas(number.split('')).join(''));
+  let result = 0;
+  const error = number === 0 && operation === '/' && 'Err: Divided by zero';
 
-  if (operation === '+') return Number(beforeResult + number);
-  if (operation === '/') return Number(beforeResult / number);
-  if (operation === 'x' || operation === '*') return Number(beforeResult * number);
-  if (operation === '-') return Number(beforeResult - number);
+  if (operation === '+') result = Number(beforeResult + number);
+  if (operation === '/') result = Number(beforeResult / number);
+  if (operation === 'x' || operation === '*') result = Number(beforeResult * number);
+  if (operation === '-') result = Number(beforeResult - number);
+
+  return { result, error };
 };
 
 export const operationAction = ({
@@ -39,7 +43,7 @@ export const operationAction = ({
 
   const beforeOperation = localStorage.getItem('lastAction') === null ? operation : localStorage.getItem('lastAction');
   const beforeResult = localStorage.getItem('result');
-  let result = executeOperation({ number, operation: beforeOperation, beforeResult });
+  let { result, error } = executeOperation({ number, operation: beforeOperation, beforeResult });
 
   if (beforeResult === null) {
     result = Number(removeCommas(number.split('')).join(''));
@@ -51,7 +55,7 @@ export const operationAction = ({
   localStorage.setItem('lastAction', operation);
   setClearInput(true);
 
-  return result;
+  return { result, error };
 };
 
 export const equalAction = ({ number, setKeyword, setClearInput, setCleanStorage }) => {
@@ -63,8 +67,9 @@ export const equalAction = ({ number, setKeyword, setClearInput, setCleanStorage
     number = localStorage.getItem('lastNumber');
   }
 
-  const result = operationAction({ number, operation, setClearInput, equal: true });
-  setKeyword(addCommas(String(result)));
+  const { result, error } = operationAction({ number, operation, setClearInput, equal: true });
+
+  setKeyword(error || addCommas(String(result)));
   setCleanStorage(true);
 };
 
