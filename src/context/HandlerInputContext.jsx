@@ -68,10 +68,10 @@ export function HandlerInputContextProvider({ children }) {
         number = removeFirstZero(number);
         setKeyword(number);
       } else {
-        console.err('Error: Invalid number');
+        console.error('Error: Invalid number');
       }
     } catch (error) {
-      console.err(error);
+      console.error(error);
     }
     inputDisplay.current.focus();
   };
