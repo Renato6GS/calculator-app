@@ -99,3 +99,9 @@ body {
   height: 100vh;
   background-color: var(--main-background);
 }
+
+@media screen and (max-width: 450px), screen and (min-height: 1180px) {
+  .App {
+    padding: 0 20px 0 20px;
+  }
+}

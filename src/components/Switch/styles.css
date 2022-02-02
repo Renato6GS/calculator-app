@@ -76,3 +76,51 @@
   transform: translateX(46px);
   transition: transform 0.7s;
 }
+
+@media screen and (max-width: 450px) {
+  .switch-container {
+    width: 130%;
+  }
+
+  .toggle {
+    gap: 20px;
+  }
+
+  .container-circle {
+    width: 90px;
+  }
+
+  .position-1 {
+    transform: translateX(0px);
+  }
+
+  .position-2 {
+    transform: translateX(28px);
+  }
+
+  .position-3 {
+    transform: translateX(58px);
+  }
+}
+
+@media screen and (min-height: 1180px) {
+  .toggle {
+    gap: 40px;
+  }
+
+  .container-circle {
+    width: 130px;
+  }
+
+  .position-1 {
+    transform: translateX(0px);
+  }
+
+  .position-2 {
+    transform: translateX(48px);
+  }
+
+  .position-3 {
+    transform: translateX(96px);
+  }
+}

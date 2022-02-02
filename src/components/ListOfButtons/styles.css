@@ -7,3 +7,15 @@
   background-color: var(--background-main-container-btn);
   border-radius: 8px;
 }
+
+@media screen and (max-width: 450px) {
+  .calculator--container-buttons {
+    height: 60%;
+  }
+}
+
+@media screen and (min-height: 1180px) {
+  .calculator--container-buttons {
+    height: 55%;
+  }
+}

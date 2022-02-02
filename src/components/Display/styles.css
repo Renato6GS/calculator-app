@@ -19,3 +19,9 @@
 .calculator--display input:invalid {
   content: 'algo mal';
 }
+
+@media screen and (min-height: 1180px) {
+  .calculator--display input {
+    font-size: 2.5rem;
+  }
+}

@@ -4,3 +4,16 @@
   flex-direction: column;
   gap: 15px;
 }
+
+@media screen and (max-width: 450px), screen and (min-height: 1180px) {
+  .calculator--container {
+    height: 95vh;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-height: 1180px) {
+  .calculator--container {
+    width: 600px;
+  }
+}
