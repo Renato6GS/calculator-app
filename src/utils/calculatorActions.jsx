@@ -71,6 +71,3 @@ export const equalAction = ({ number, setKeyword, setClearInput, setCleanStorage
 export const clearStorage = () => {
   localStorage.clear();
 };
-
-// TODO: Delete last digit and change it for 0
-// TODO: Concatenacion operation
