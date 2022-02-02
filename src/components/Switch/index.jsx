@@ -4,8 +4,8 @@ import ThemeContext from '../../context/ThemeContext';
 import './styles.css';
 
 export default function Switch() {
-  let [plan, setPlan] = useState('theme-1');
   const { theme, setTheme } = useContext(ThemeContext);
+  let [plan, setPlan] = useState(theme);
 
   const handleThemes = (currentTheme) => {
     return currentTheme === theme || currentTheme;

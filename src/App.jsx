@@ -6,7 +6,7 @@ import ThemeContext from './context/ThemeContext';
 function App() {
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  const [theme, setTheme] = useState(defaultDark ? 'theme-1' : 'theme-3');
+  const [theme, setTheme] = useState(defaultDark ? 'theme-1' : 'theme-2');
   const value = { theme, setTheme };
 
   return (
