@@ -1,6 +1,12 @@
 import { removeCommas } from './removeActions';
 
 export const addCommas = (number) => {
+  let isNegative = false;
+  if (number.startsWith('-')) {
+    number = number.slice(1, number.length);
+    isNegative = true;
+  }
+
   let arr = removeCommas(number.split(''));
   let result = [];
   let addComma = 3;
@@ -21,5 +27,6 @@ export const addCommas = (number) => {
 
   result = result.reverse();
   result.push(afterPoint.join(''));
+  isNegative && result.unshift('-');
   return result.join('');
 };
