@@ -74,7 +74,6 @@ export const equalAction = ({ number, setKeyword, setClearInput, setCleanStorage
 };
 
 export const clearStorage = () => {
-  // localStorage.clear();
   localStorage.removeItem('result');
   localStorage.removeItem('lastAction');
   localStorage.removeItem('lastNumber');
