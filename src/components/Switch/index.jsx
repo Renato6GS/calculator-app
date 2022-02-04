@@ -18,8 +18,17 @@ export default function Switch() {
   };
 
   const handlerChanges = (e) => {
+    console.log(e);
     setPlan(e);
     switchTheme(e);
+  };
+
+  const getRangeValue = () => theme.slice(6, 7);
+
+  const handleRange = (e) => {
+    const { value } = e.target;
+    setPlan('theme-' + value);
+    switchTheme('theme-' + value);
   };
 
   return (
@@ -46,9 +55,17 @@ export default function Switch() {
           </RadioGroup.Option>
         </RadioGroup>
         <span className={'container-circle'} id='container'>
-          <span
-            className={`circle ${plan === 'theme-1' ? 'position-1' : plan === 'theme-2' ? 'position-2' : 'position-3'}`}
-            id='circle'></span>
+          <input
+            type='range'
+            className='switch--range'
+            name='range'
+            id='range'
+            min='1'
+            max='3'
+            step='1'
+            value={getRangeValue()}
+            onChange={handleRange}
+          />
         </span>
       </div>
     </div>
