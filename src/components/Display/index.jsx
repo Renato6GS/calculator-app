@@ -56,9 +56,6 @@ export default function Display() {
         name='display'
         id='display'
         placeholder='0'
-        step='0.0001'
-        max='9999999999'
-        min='-9999999999'
         onChange={handleChangeDisplay}
         value={keyword ?? 0}
         ref={inputDisplay}
