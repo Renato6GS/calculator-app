@@ -23,6 +23,11 @@ const executeOperation = ({ number, operation, beforeResult }) => {
   if (operation === '/') result = Number(beforeResult / number);
   if (operation === 'x' || operation === '*') result = Number(beforeResult * number);
   if (operation === '-') result = Number(beforeResult - number);
+  if (operation === '%') result = Number((beforeResult * number) / 100);
+  if (operation === 'x2') result = Number(beforeResult ** 2);
+  if (operation === '√') result = Number(Math.sqrt(beforeResult));
+  if (operation === '1/x') result = Number(1 / beforeResult);
+  if (operation === 'mod') result = Number(beforeResult % number);
 
   return { result, error };
 };
@@ -77,4 +82,12 @@ export const clearStorage = () => {
   localStorage.removeItem('result');
   localStorage.removeItem('lastAction');
   localStorage.removeItem('lastNumber');
+};
+
+export const factorial = ({ number }) => {
+  let result = 1;
+  for (let i = 1; i <= number; i++) {
+    result *= i;
+  }
+  return result;
 };
