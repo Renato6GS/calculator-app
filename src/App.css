@@ -31,6 +31,8 @@ html {
   --display: #fff;
   --text-color-del: #fff;
   --text-color-equal: #fff;
+
+  --switch-color: invert(92%) sepia(93%) saturate(31%) hue-rotate(248deg) brightness(108%) contrast(100%);
 }
 
 [data-theme='theme-2'] {
@@ -57,6 +59,8 @@ html {
   --display: #39392e;
   --text-color-del: hsl(0, 0%, 90%);
   --text-color-equal: hsl(0, 0%, 90%);
+
+  --switch-color: filter: invert(20%) sepia(6%) saturate(1292%) hue-rotate(22deg) brightness(93%) contrast(90%);
 }
 
 [data-theme='theme-3'] {
@@ -85,6 +89,8 @@ html {
   --text-display: hsl(0, 0, 100%);
   --text-color-del: #fff;
   --text-color-equal: hsl(221, 14%, 31%);
+
+  --switch-color: invert(83%) sepia(82%) saturate(453%) hue-rotate(337deg) brightness(99%) contrast(107%);
 }
 
 body {

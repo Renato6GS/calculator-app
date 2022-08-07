@@ -4,17 +4,20 @@ import Header from '../Header';
 import ListOfButtons from '../ListOfButtons';
 import './styles.css';
 import { HandlerInputContextProvider } from 'context/HandlerInputContext';
+import { HandlerTypeCalculatorContextProvider } from 'context/TypeCalculatorContext';
 
 export default function Calculator() {
   return (
     <div className='calculator--container'>
-      <Header />
+      <HandlerTypeCalculatorContextProvider>
+        <Header />
 
-      <HandlerInputContextProvider>
-        <Display />
+        <HandlerInputContextProvider>
+          <Display />
 
-        <ListOfButtons />
-      </HandlerInputContextProvider>
+          <ListOfButtons />
+        </HandlerInputContextProvider>
+      </HandlerTypeCalculatorContextProvider>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import React from 'react';
+import useDigits from '../../hooks/useDigits';
 import Button from '../Button';
 import './styles.css';
 
-const DIGITS = [7, 8, 9, 'DEL', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0, '/', 'x'];
-
 export default function ListOfButtons() {
+  const [digits] = useDigits();
+
   return (
     <div className='calculator--container-buttons'>
-      {DIGITS.map((e) => {
+      {digits.map((e) => {
         const className = e === 'DEL' ? 'btn btn-del' : 'btn';
         return <Button key={e} className={className} digit={e} />;
       })}

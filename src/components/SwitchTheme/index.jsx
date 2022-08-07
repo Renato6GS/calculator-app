@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react';
 import ThemeContext from '../../context/ThemeContext';
 import './styles.css';
 
-export default function Switch() {
+export default function SwitchTheme() {
   const { theme, setTheme } = useContext(ThemeContext);
   let [plan, setPlan] = useState(theme);
 
@@ -18,7 +18,6 @@ export default function Switch() {
   };
 
   const handlerChanges = (e) => {
-    console.log(e);
     setPlan(e);
     switchTheme(e);
   };

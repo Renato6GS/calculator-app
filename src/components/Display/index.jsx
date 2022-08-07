@@ -1,31 +1,15 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './styles.css';
 import Context from 'context/HandlerInputContext';
 import { isANumber } from 'utils/validateActions';
 import { delAction } from '../../utils/calculatorActions';
+import useFocus from '../../hooks/useFocus';
+import useResizeWindow from '../../hooks/useResizeWindow';
 
 export default function Display() {
   const { keyword, handleChange, inputDisplay, clearInput, setClearInput, setKeyword } = useContext(Context);
-  const [disableInput, setDisableInput] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth);
-
-  function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
-  }
-
-  useEffect(() => {
-    inputDisplay.current.focus();
-    localStorage.clear();
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-    setDisableInput(width < 830);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
-    };
-  }, [window.innerWidth]);
+  const [disableInput] = useResizeWindow();
+  useFocus({ inputDisplay });
 
   const handleKeyDown = (event) => {
     const { key } = event;
