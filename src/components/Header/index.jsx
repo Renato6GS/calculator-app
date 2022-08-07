@@ -11,7 +11,7 @@ export default function Header() {
     <header className='calculator--header'>
       <Switch checked={typeCalculator} onChange={setTypeCalculator} className='calculator--toggle'>
         <h1 className='calculator--title'>
-          calc <img className='calculator--switch' src='src/icons/switch-vertical.svg' alt='' />
+          calc <img className='calculator--switch' src='../../icons/switch-vertical.svg' alt='' />
         </h1>
       </Switch>
       <SwitchTheme />
