@@ -102,12 +102,12 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  height: 100vh;
   background-color: var(--main-background);
+  min-height: 100vh;
 }
 
 @media screen and (max-width: 450px), screen and (min-height: 1180px) {
   .App {
-    padding: 0 20px 0 20px;
+    padding: 2rem 20px;
   }
 }
